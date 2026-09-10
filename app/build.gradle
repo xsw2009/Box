@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.yanzhenjie.andserver'
 
+def static REL_PW = 'StarSky.1905.tk'
+
 def static buildTime() {
     return new Date().format("yyyyMMdd_HHmm", TimeZone.getTimeZone("GMT+08:00"))
 }
@@ -28,10 +30,19 @@ android {
         exclude 'META-INF/DEPENDENCIES'
     }
 
+    signingConfigs {
+        release {
+            storeFile file('../keystore/release.p12')
+            storePassword REL_PW
+            keyAlias 'star'
+            keyPassword REL_PW
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 
