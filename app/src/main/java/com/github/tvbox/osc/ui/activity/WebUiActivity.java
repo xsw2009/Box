@@ -62,6 +62,14 @@ public class WebUiActivity extends Activity {
             public void onPageFinished(WebView view, String url) {
                 mProgress.setVisibility(View.GONE);
             }
+
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                mProgress.setVisibility(View.GONE);
+                if (failingUrl != null && failingUrl.startsWith("http")) {
+                    mErrorBox.setVisibility(View.VISIBLE);
+                }
+            }
         });
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -95,13 +103,18 @@ public class WebUiActivity extends Activity {
 
         setContentView(mContainer);
 
-        ControlManager.init(getApplicationContext());
-        ControlManager.get().startServer();
+        try {
+            ControlManager.init(getApplicationContext());
+            ControlManager.get().startServer();
 
-        mWebView.requestFocus();
-        mWebView.setFocusable(true);
-        mWebView.setFocusableInTouchMode(true);
-        mWebView.loadUrl("http://127.0.0.1:" + com.github.tvbox.osc.server.RemoteServer.serverPort + "/");
+            mWebView.requestFocus();
+            mWebView.setFocusable(true);
+            mWebView.setFocusableInTouchMode(true);
+            mWebView.loadUrl("http://127.0.0.1:" + com.github.tvbox.osc.server.RemoteServer.serverPort + "/");
+        } catch (Throwable t) {
+            t.printStackTrace();
+            goNative();
+        }
     }
 
     private void goNative() {
