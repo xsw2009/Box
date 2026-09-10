@@ -1,4 +1,4 @@
-name: Test Build
+name: Build PBS PandaTV APK
 
 on:
   push:
@@ -15,8 +15,9 @@ jobs:
           fetch-depth: 0
       - name: Build With Gradle
         run: |
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
           chmod +x gradlew
-          ./gradlew assemblerelease --build-cache --parallel --daemon --warning-mode all
+          ./gradlew :app:assembleArm64HisenseNormalRelease :app:assembleArmeabiHisenseNormalRelease :app:assembleArm64GenericNormalRelease --build-cache --parallel --daemon --warning-mode all
       - name: Prepare App
         run: |
           mkdir -p ${{ github.workspace }}/apk/
@@ -28,3 +29,4 @@ jobs:
         with:
           name: com.github.tvbox.osc
           path: ${{ github.workspace }}/apk/*
+          if-no-files-found: error
