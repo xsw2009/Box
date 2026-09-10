@@ -3,13 +3,16 @@ html {
   height: 100%;
   -webkit-tap-highlight-color: transparent;
 }
+
 body {
   font-family: system-ui, -apple-system, Helvetica Neue, sans-serif;
 }
+
 .page,
 body {
   background-color: var(--weui-BG-0);
 }
+
 .page {
   position: absolute;
   top: 0;
@@ -20,4 +23,56 @@ body {
   -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
   z-index: 1;
+}
+
+.form-group {
+    text-align: left; /* 使表单元素左对齐 */
+}
+
+.login-div {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+}
+
+.login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 300px;
+    text-align: center; /* 使标题居中 */
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
 }
