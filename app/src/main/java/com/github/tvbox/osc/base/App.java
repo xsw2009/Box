@@ -135,6 +135,9 @@ public class App extends MultiDexApplication {
         Hawk.init(this).build();
         Hawk.put(HawkConfig.DEBUG_OPEN, false);
 
+        // iStoreAi custom: PandaTV preset config endpoint
+        putDefault(HawkConfig.API_URL, "http://192.168.100.1:1905/u/oN-1nY3f/tvbox.json");
+
         // 首页选项
         putDefault(HawkConfig.HOME_SHOW_SOURCE, true);       //数据源显示: true=开启, false=关闭
         putDefault(HawkConfig.HOME_SEARCH_POSITION, false);  //按钮位置-搜索: true=上方, false=下方
