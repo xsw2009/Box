@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.yanzhenjie.andserver'
 
-def static REL_PW = 'StarSky.1905.tk'
+def REL_PW = 'StarSky.1905.tk'
 
 def static buildTime() {
     return new Date().format("yyyyMMdd_HHmm", TimeZone.getTimeZone("GMT+08:00"))
